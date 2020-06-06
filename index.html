@@ -1,20 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <meta charset="UTF-8">
     <title>Guessing Game</title>
     <link rel="stylesheet" href="main.css">
     <!-- the MAIN.CSS file is linked here -->
   </head>
+  <body id = "body">
+    <div id="app">
+      <div class="center">
+        <h1>Play the Guessing Game!</h1>
+        <h3 id="subtitle">Guess a number between 1-100!</h3>
+      </div>
+      <div id='guess-feedback' class='center'>
+        <h4></h4>
+      </div>
 
-  <body>
-
-
-
-
-
-    <!-- <script src='js/guessing-game.js'></script> -->
+      <div>
+        <div id="input-parent">
+          <input class="center" id="player-input" maxlength='3' autofocus=autofocus></input>
+          <button id="submit">Go!</button>
+          <button id="reset">Reset</button>
+          <button id="hint">Hint</button>
+        </div>
+  
+        <div class="center">
+          <ul id="guess-list">
+            <li class="guess">-</li>
+            <li class="guess">-</li>
+            <li class="guess">-</li>
+            <li class="guess">-</li>
+            <li class="guess">-</li>
+          </ul>
+        </div>
+  
+      </div>
+    </div>
+    
+    <div id="footer" class="center">
+      <div>
+        <h4>Project by Dean Gladish</h4>
+      </div>
+    </div>
+    </div>
+    <script src='js/guessing-game.js'></script>
     <!-- uncomment the script tag above when you are ready to add JavaScript to your document -->
   </body>
 
