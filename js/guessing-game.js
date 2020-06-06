@@ -1,8 +1,12 @@
+<<<<<<< HEAD
 /* eslint-disable complexity */
 /* eslint-disable no-fallthrough */
 /* eslint-disable default-case */
 /* eslint-disable no-throw-literal */
 /*
+=======
+/* 
+>>>>>>> parent of de433e0... logic, and I'm also going to upload the css right now
 
 Write your guess-game code here! Don't forget to look at the test specs as a guide. You can run the specs
 by running "testem".
@@ -10,6 +14,7 @@ by running "testem".
 In this file, you will also include the event listeners that are needed to interact with your HTML file when
 a user clicks a button or adds a guess to the input field.
 
+<<<<<<< HEAD
 */
 
 document.getElementById('');
@@ -121,3 +126,6 @@ function playGame() {
   }
   // start up the game!
   playGame(); // note: running this function will cause the test specs to fail
+=======
+*/
+>>>>>>> parent of de433e0... logic, and I'm also going to upload the css right now
