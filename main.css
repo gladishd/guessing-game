@@ -54,8 +54,8 @@ ul {
   #submit {
     border-radius: 500vw;
     height: 2vw;
-    width: 2.8vw;
-    left: 0.5vw;
+    width: 2.7vw;
+    left: 0.4vw;
     top: 3vw;
     position: relative;
     font-size: 1vw;
@@ -79,11 +79,24 @@ ul {
     border-style: inset;
     border-radius: 600vw;
     height: 2vw;
-    width: 3.8vw;
+    width: 3.1vw;
     left: 0.5vw;
     position: absolute;
     left: 14.7vw;
     top: 5vw;
+    font-size: 1vw;
+  }
+
+  /* For the button that says "Dark Mode' */
+  #darkModeButton {
+    border-style: inset;
+    border-radius: 600vw;
+    height: 2vw;
+    width: 6.2vw;
+    left: 0.5vw;
+    position: absolute;
+    left: 14.7vw;
+    top: 2.6vw;
     font-size: 1vw;
   }
   
@@ -123,6 +136,10 @@ ul {
     background-repeat: repeat;
     background-size: 100% 100%;
     background-attachment: fixed;
+  }
+
+  .darkMode {
+    background-image: linear-gradient(to right, rgb(24, 43, 43),rgb(255, 250, 204),rgb(24, 43, 43));
   }
   
   /* Extend the length of the display box */

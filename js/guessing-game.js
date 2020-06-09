@@ -118,6 +118,12 @@ function playGame() {
         game.provideHint();
         document.querySelector('input').focus();
     })
+
+    const darkModeButton = document.getElementById('darkModeButton');
+    darkModeButton.addEventListener('click', function() {
+        document.getElementById('body').classList.toggle('darkMode');
+    })
+
   }
   // start up the game!
   playGame(); // note: running this function will cause the test specs to fail
