@@ -102,10 +102,12 @@ function playGame() {
     // We are listening for when the user clicks on our button.
     // When they click, we will check in the input field to see if they have guessed a number. Then we will run the function `checkGuess`, and give it the player's guess, the winning number, and the empty array of guesses!
     submitButton.addEventListener('click', function() {
+      document.querySelector('input').focus(); // has to be first, otherwise the code is unreachable
       const playersGuess = +document.querySelector('input').value;
       document.querySelector('input').value = '';
   
       game.playersGuessSubmission(playersGuess);
+      
     });
 
     // We're listening for when the user presses Enter in the input field, and if so we submit the guess if it exists.
@@ -137,6 +139,7 @@ function playGame() {
     const darkModeButton = document.getElementById('darkModeButton');
     darkModeButton.addEventListener('click', function() {
         document.getElementById('body').classList.toggle('darkMode');
+        document.querySelector('input').focus();
     })
 
   }
