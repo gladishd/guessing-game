@@ -97,6 +97,10 @@ function shuffle(arr) { // Fisher-Yates shuffle
 function playGame() {
     let game = newGame();
     document.getElementById('hint').disabled = true;
+    const currentHour = new Date().getHours();
+    if (currentHour <= 7 || currentHour >= 19) { // different color for different time of day
+        document.getElementById('body').classList.toggle('darkMode');
+    }
     // We are grabbing the submit button from our html using getElementById
     const submitButton = document.getElementById('submit'); 
     // instead of querySelector, so we can refer to exactly one button only.  

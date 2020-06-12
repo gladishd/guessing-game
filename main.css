@@ -59,6 +59,7 @@ ul {
     top: 3vw;
     position: relative;
     font-size: 1vw;
+    font-family: 'MS Georgia', sans-serif;
   }
 
   /* For the button that says 'Reset' */
@@ -72,6 +73,7 @@ ul {
     left: 14.7vw;
     top: 7.5vw;
     font-size: 1vw;
+    font-family: 'MS Georgia', sans-serif;
   }
 
   /* For the button that says 'Hint' */
@@ -85,6 +87,7 @@ ul {
     left: 14.7vw;
     top: 5vw;
     font-size: 1vw;
+    font-family: 'MS Georgia', sans-serif;
   }
 
   /* For the button that says "Dark Mode' */
@@ -98,6 +101,7 @@ ul {
     left: 14.7vw;
     top: 2.6vw;
     font-size: 1vw;
+    font-family: 'MS Georgia', sans-serif;
   }
   
   /* For the last div in the project, that says who made the game */
@@ -129,13 +133,22 @@ ul {
   }
 
   body {
-    background-image: linear-gradient(to right, rgb(143, 255, 255),rgb(255, 250, 204),rgb(143, 255, 255));
+    background-image: linear-gradient(to right, rgb(70, 126, 126),rgb(255, 250, 204),rgb(70, 126, 126));
     max-width: 100vw;
     padding: 0;
     font-family: 'Georgia', sans-serif;
     background-repeat: repeat;
     background-size: 100% 100%;
     background-attachment: fixed;
+  }
+
+  h1 {
+    font-family: 'MS Georgia';
+    padding-top: 2vw;
+  }
+
+  h3 {
+    font-family: 'MS Georgia';
   }
 
   .darkMode {
