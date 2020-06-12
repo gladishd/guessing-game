@@ -1,3 +1,4 @@
+/* eslint-disable max-statements */
 /* eslint-disable complexity */
 /* eslint-disable no-fallthrough */
 /* eslint-disable default-case */
@@ -11,9 +12,7 @@ In this file, you will also include the event listeners that are needed to inter
 a user clicks a button or adds a guess to the input field.
 
 */
-
 document.getElementById('');
-
 class Game {
     constructor() {
         this.playersGuess = null;
@@ -30,7 +29,7 @@ class Game {
         this.hint = [];
         document.querySelector('#guess-feedback > h4').innerHTML = '';
         for (let i = 1; i <= 5; i++) { document.querySelector(`#guess-list li:nth-child(${i})`).innerHTML = '-'; }
-        document.getElementById('hint').disabled = false;
+        document.getElementById('hint').disabled = true;
         document.getElementById('player-input').disabled = false;
     }
     difference() { return Math.abs(this.playersGuess - this.winningNumber); }
@@ -53,6 +52,7 @@ class Game {
         // these lines will make the test specs fail
         if (this.playersGuess === this.winningNumber) { 
             feedbackText = 'You Win!'; 
+            this.pastGuesses = []; // because the hint button being enabled/disabled depends on pastGuesses' length
             document.querySelector('#guess-feedback > h4').innerHTML = feedbackText;
             document.getElementById('hint').disabled = true;
             document.getElementById('player-input').disabled = true;
@@ -65,13 +65,16 @@ class Game {
             document.getElementById('player-input').disabled = true;
             feedbackText = 'You Lose';
             document.querySelector('#guess-feedback > h4').innerHTML = feedbackText;
+            this.pastGuesses = []; // reset past guesses
         }
         return feedbackText;
     }
     provideHint(hintArray = []) {
         this.nHintCalls++;
         if (this.nHintCalls <= 1) {
-            hintArray.push(generateWinningNumber(), this.winningNumber, generateWinningNumber());
+            hintArray.push(Math.round((((generateWinningNumber() + this.winningNumber) / 2) + this.winningNumber) / 2), 
+            this.winningNumber, 
+            Math.round((((generateWinningNumber() + this.winningNumber) / 2) + this.winningNumber) / 2));
             this.hint = shuffle(hintArray);
         }
         document.querySelector('#guess-feedback > h4').innerHTML = this.hint;
@@ -91,27 +94,22 @@ function shuffle(arr) { // Fisher-Yates shuffle
     return arr;
 }
 
-
 function playGame() {
     let game = newGame();
-    
+    document.getElementById('hint').disabled = true;
     // We are grabbing the submit button from our html using getElementById
     const submitButton = document.getElementById('submit'); 
     // instead of querySelector, so we can refer to exactly one button only.  
-  
     // We are listening for when the user clicks on our button.
     // When they click, we will check in the input field to see if they have guessed a number. Then we will run the function `checkGuess`, and give it the player's guess, the winning number, and the empty array of guesses!
     submitButton.addEventListener('click', function() {
       document.querySelector('input').focus(); // has to be first, otherwise the code is unreachable
       const playersGuess = +document.querySelector('input').value;
       document.querySelector('input').value = '';
-  
       game.playersGuessSubmission(playersGuess);
-      
     });
-
     // We're listening for when the user presses Enter in the input field, and if so we submit the guess if it exists.
-    // If it doesn't exist then we reset.   
+    // If it doesn't exist then we reset.
     const enterPress = document.querySelector('input');
     enterPress.addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
@@ -121,27 +119,26 @@ function playGame() {
             if (playersGuess === 0) { game.resetGame(); }
             if (!isNaN(playersGuess)) { game.playersGuessSubmission(playersGuess); }
             document.querySelector('input').focus();
-        } 
+            if (game.pastGuesses.length === 4) { // we only get a hint at a specific time
+                document.getElementById('hint').disabled = false;
+            }
+        }
     });
-
     const resetButton = document.getElementById('reset');
     resetButton.addEventListener('click', function() {
         game.resetGame();
         document.querySelector('input').focus(); // keeps focus on the input field no matter what the user does
     })
-
     const hintButton = document.getElementById('hint');
     hintButton.addEventListener('click', function() {
         game.provideHint();
         document.querySelector('input').focus();
     })
-
     const darkModeButton = document.getElementById('darkModeButton');
     darkModeButton.addEventListener('click', function() {
         document.getElementById('body').classList.toggle('darkMode');
         document.querySelector('input').focus();
     })
-
   }
   // start up the game!
   playGame(); // note: running this function will cause the test specs to fail
