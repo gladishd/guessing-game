@@ -30,6 +30,8 @@ class Game {
         this.hint = [];
         document.querySelector('#guess-feedback > h4').innerHTML = '';
         for (let i = 1; i <= 5; i++) { document.querySelector(`#guess-list li:nth-child(${i})`).innerHTML = '-'; }
+        document.getElementById('hint').disabled = false;
+        document.getElementById('player-input').disabled = false;
     }
     difference() { return Math.abs(this.playersGuess - this.winningNumber); }
     isLower() { return (this.playersGuess < this.winningNumber); }
@@ -40,7 +42,7 @@ class Game {
     }
     checkGuess() {
         let feedbackText = '';
-        if (this.pastGuesses.includes(this.playersGuess)) { feedbackText = 'You have already guessed that number.'; }
+        let pastGuessesOneStepBack = this.pastGuesses.slice(); // .slice() because we don't just want a reference
         this.pastGuesses.push(this.playersGuess);
         if (this.pastGuesses.length === 5) { feedbackText = 'You Lose.'; }
         let diff = this.difference();
@@ -49,9 +51,21 @@ class Game {
         if (diff < 25) { feedbackText = `You're lukewarm.`; }
         if (diff < 10) { feedbackText = `You're burning up!`; }
         // these lines will make the test specs fail
-        if (this.playersGuess === this.winningNumber) { feedbackText = 'You Win!'; }
+        if (this.playersGuess === this.winningNumber) { 
+            feedbackText = 'You Win!'; 
+            document.querySelector('#guess-feedback > h4').innerHTML = feedbackText;
+            document.getElementById('hint').disabled = true;
+            document.getElementById('player-input').disabled = true;
+        }
+        if (pastGuessesOneStepBack.includes(this.playersGuess)) { feedbackText = 'You have already guessed that number.'; }
         document.querySelector('#guess-feedback > h4').innerHTML = feedbackText;
-        document.querySelector(`#guess-list li:nth-child(${this.pastGuesses.length})`).innerHTML = this.playersGuess
+        document.querySelector(`#guess-list li:nth-child(${this.pastGuesses.length})`).innerHTML = this.playersGuess;
+        if (this.pastGuesses.length > 4) {
+            document.getElementById('hint').disabled = true;
+            document.getElementById('player-input').disabled = true;
+            feedbackText = 'You Lose';
+            document.querySelector('#guess-feedback > h4').innerHTML = feedbackText;
+        }
         return feedbackText;
     }
     provideHint(hintArray = []) {
@@ -61,6 +75,7 @@ class Game {
             this.hint = shuffle(hintArray);
         }
         document.querySelector('#guess-feedback > h4').innerHTML = this.hint;
+        document.getElementById('hint').disabled = true;
         return this.hint;
     }
 }
