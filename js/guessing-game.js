@@ -34,7 +34,7 @@ class Game {
     }
     difference() { return Math.abs(this.playersGuess - this.winningNumber); }
     isLower() { return (this.playersGuess < this.winningNumber); }
-    playersGuessSubmission(number){
+    playersGuessSubmission(number) {
         if (typeof (number) !== 'number' || number > 100 || number < 1) { throw 'That is an invalid guess.'; }
         this.playersGuess = number;
         return this.checkGuess();
@@ -50,8 +50,8 @@ class Game {
         if (diff < 25) { feedbackText = `You're lukewarm.`; }
         if (diff < 10) { feedbackText = `You're burning up!`; }
         // these lines will make the test specs fail
-        if (this.playersGuess === this.winningNumber) { 
-            feedbackText = 'You Win!'; 
+        if (this.playersGuess === this.winningNumber) {
+            feedbackText = 'You Win!';
             this.pastGuesses = []; // because the hint button being enabled/disabled depends on pastGuesses' length
             document.querySelector('#guess-feedback > h4').innerHTML = feedbackText;
             document.getElementById('hint').disabled = true;
@@ -72,9 +72,9 @@ class Game {
     provideHint(hintArray = []) {
         this.nHintCalls++;
         if (this.nHintCalls <= 1) {
-            hintArray.push(Math.round((((generateWinningNumber() + this.winningNumber) / 2) + this.winningNumber) / 2), 
-            this.winningNumber, 
-            Math.round((((generateWinningNumber() + this.winningNumber) / 2) + this.winningNumber) / 2));
+            hintArray.push(Math.round((((generateWinningNumber() + this.winningNumber) / 2) + this.winningNumber) / 2),
+                this.winningNumber,
+                Math.round((((generateWinningNumber() + this.winningNumber) / 2) + this.winningNumber) / 2));
             this.hint = shuffle(hintArray);
         }
         document.querySelector('#guess-feedback > h4').innerHTML = this.hint;
@@ -102,23 +102,24 @@ function playGame() {
         document.getElementById('body').classList.toggle('darkMode');
     }
     // We are grabbing the submit button from our html using getElementById
-    const submitButton = document.getElementById('submit'); 
-    // instead of querySelector, so we can refer to exactly one button only.  
+    const submitButton = document.getElementById('submit');
+    // instead of querySelector, so we can refer to exactly one button only.
     // We are listening for when the user clicks on our button.
     // When they click, we will check in the input field to see if they have guessed a number. Then we will run the function `checkGuess`, and give it the player's guess, the winning number, and the empty array of guesses!
-    submitButton.addEventListener('click', function() {
-      document.querySelector('input').focus(); // has to be first, otherwise the code is unreachable
-      const playersGuess = +document.querySelector('input').value;
-      document.querySelector('input').value = '';
-      game.playersGuessSubmission(playersGuess);
+    submitButton.addEventListener('click', function () {
+        document.querySelector('input').focus(); // has to be first, otherwise the code is unreachable
+        const playersGuess = +document.querySelector('input').value;
+        document.querySelector('input').value = '';
+        game.playersGuessSubmission(playersGuess);
     });
+
     // We're listening for when the user presses Enter in the input field, and if so we submit the guess if it exists.
     // If it doesn't exist then we reset.
     const enterPress = document.querySelector('input');
-    enterPress.addEventListener('keypress', function(e) {
+    enterPress.addEventListener('keypress', function (e) {
         if (e.key === 'Enter') {
             const playersGuess = +document.querySelector('input').value; // + converts the string to an int
-            // that means 'string' -> NaN, '1' -> 1, and '' -> 0.  
+            // that means 'string' -> NaN, '1' -> 1, and '' -> 0.
             document.querySelector('input').value = ''; // clear the input field
             if (playersGuess === 0) { game.resetGame(); }
             if (!isNaN(playersGuess)) { game.playersGuessSubmission(playersGuess); }
@@ -129,20 +130,20 @@ function playGame() {
         }
     });
     const resetButton = document.getElementById('reset');
-    resetButton.addEventListener('click', function() {
+    resetButton.addEventListener('click', function () {
         game.resetGame();
         document.querySelector('input').focus(); // keeps focus on the input field no matter what the user does
     })
     const hintButton = document.getElementById('hint');
-    hintButton.addEventListener('click', function() {
+    hintButton.addEventListener('click', function () {
         game.provideHint();
         document.querySelector('input').focus();
     })
     const darkModeButton = document.getElementById('darkModeButton');
-    darkModeButton.addEventListener('click', function() {
+    darkModeButton.addEventListener('click', function () {
         document.getElementById('body').classList.toggle('darkMode');
         document.querySelector('input').focus();
     })
-  }
-  // start up the game!
-  playGame(); // note: running this function will cause the test specs to fail
+}
+// start up the game!
+playGame(); // note: running this function will cause the test specs to fail
