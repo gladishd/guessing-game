@@ -1,11 +1,14 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* eslint-disable complexity */
 /* eslint-disable no-fallthrough */
 /* eslint-disable default-case */
 /* eslint-disable no-throw-literal */
 /*
 =======
+=======
+>>>>>>> parent of de433e0... logic, and I'm also going to upload the css right now
 =======
 >>>>>>> parent of de433e0... logic, and I'm also going to upload the css right now
 /* 
@@ -17,6 +20,7 @@ by running "testem".
 In this file, you will also include the event listeners that are needed to interact with your HTML file when
 a user clicks a button or adds a guess to the input field.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 */
@@ -130,6 +134,9 @@ function playGame() {
   }
   // start up the game!
   playGame(); // note: running this function will cause the test specs to fail
+=======
+*/
+>>>>>>> parent of de433e0... logic, and I'm also going to upload the css right now
 =======
 */
 >>>>>>> parent of de433e0... logic, and I'm also going to upload the css right now
